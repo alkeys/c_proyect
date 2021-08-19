@@ -12,14 +12,7 @@
 #include "funcion/funcion.h"
 
 int main(int argc, char** argv) {
-
-    char c[2000];
-   int v[]={998,254,40,8,999,4};
-    int i;
-    int n=anchura(v);
-    recorrer(&v,&c,n);
-    printf("%s",c);
-  
+//cantidad maxima de datos = 0 a 999
     
     return (EXIT_SUCCESS);
 }

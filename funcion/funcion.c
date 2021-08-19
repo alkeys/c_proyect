@@ -3,7 +3,10 @@
 #include "funcion.h"
 
 //sprintf(c, "%d", n);
-
+//convierte los valores enteros del vector a una cadena de char y de vuelve el dato mediante un puntero
+//V puntero de vector 
+//C puntero de cadena
+//cant = cantidad de datos
 void recorrer(int *V, char *C, int cant) {
     char aux[5000];
     char convertir_2[5];
@@ -62,8 +65,23 @@ void recorrer(int *V, char *C, int cant) {
         }
     }
     strcpy(C, aux);
+    return;
 }
 
+//modifica un espacio de memoria concreto
 void modificar(int *V, int N_casilla, int dato_sustitullente) {
+    V[N_casilla]=dato_sustitullente;   
+    return;
+}
 
+//inserta un dato en un espacio de memoria concreto
+void insertar(int *V, int N_casilla, int dato_a_insertar){  
+    int aux[N_casilla];
+    
+}
+
+//borra un espacio de memoria concreto
+void borra(int *V, int N_casilla) {
+    V[N_casilla]=0;   
+    return;
 }

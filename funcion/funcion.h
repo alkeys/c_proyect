@@ -3,13 +3,15 @@
 
 #include <stdio.h>
 
-
 #define anchura(vector) (sizeof(vector)/sizeof(vector[0]))
-
 
 void recorrer(int *V,char *C,int cant);
 
 void modificar(int *V,int N_casilla,int dato_sustitullente);
+
+void insertar(int *V, int N_casilla, int dato_a_insertar);
+
+void borra(int *V, int N_casilla);
 
 
 #endif /* FUNCIONES_H */
