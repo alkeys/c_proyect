@@ -15,4 +15,8 @@ void borra(int *V, int N_casilla);
 
 void ordenamiento(int *V,int N);
 
+void remplazar(int *V,int dato_a_remplazar,int Nuevo_dato );
+
+void invertir(int *V,int N);
+
 #endif /* FUNCIONES_H */

@@ -13,10 +13,12 @@
 
 int main(int argc, char** argv) {
 //cantidad maxima de datos = 0 a 999
+  int V[]={1,2,3,4,5};
+    invertir(V,5);
+    int i;
+   
 
 
-
-    
     
     return (EXIT_SUCCESS);
 }

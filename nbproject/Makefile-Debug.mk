@@ -43,14 +43,18 @@ TESTDIR=${CND_BUILDDIR}/${CND_CONF}/${CND_PLATFORM}/tests
 
 # Test Files
 TESTFILES= \
+	${TESTDIR}/TestFiles/f5 \
 	${TESTDIR}/TestFiles/f2 \
 	${TESTDIR}/TestFiles/f1 \
+	${TESTDIR}/TestFiles/f4 \
 	${TESTDIR}/TestFiles/f3
 
 # Test Object Files
 TESTOBJECTFILES= \
+	${TESTDIR}/tests/invertir.o \
 	${TESTDIR}/tests/orden.o \
 	${TESTDIR}/tests/recorrer.o \
+	${TESTDIR}/tests/remplaza.o \
 	${TESTDIR}/tests/tes2.o
 
 # C Compiler Flags
@@ -94,6 +98,10 @@ ${OBJECTDIR}/main.o: main.c
 .build-tests-conf: .build-tests-subprojects .build-conf ${TESTFILES}
 .build-tests-subprojects:
 
+${TESTDIR}/TestFiles/f5: ${TESTDIR}/tests/invertir.o ${OBJECTFILES:%.o=%_nomain.o}
+	${MKDIR} -p ${TESTDIR}/TestFiles
+	${LINK.c} -o ${TESTDIR}/TestFiles/f5 $^ ${LDLIBSOPTIONS}   -lcunit 
+
 ${TESTDIR}/TestFiles/f2: ${TESTDIR}/tests/tes2.o ${OBJECTFILES:%.o=%_nomain.o}
 	${MKDIR} -p ${TESTDIR}/TestFiles
 	${LINK.c} -o ${TESTDIR}/TestFiles/f2 $^ ${LDLIBSOPTIONS}   -lcunit 
@@ -102,9 +110,19 @@ ${TESTDIR}/TestFiles/f1: ${TESTDIR}/tests/recorrer.o ${OBJECTFILES:%.o=%_nomain.
 	${MKDIR} -p ${TESTDIR}/TestFiles
 	${LINK.c} -o ${TESTDIR}/TestFiles/f1 $^ ${LDLIBSOPTIONS}   -lcunit 
 
+${TESTDIR}/TestFiles/f4: ${TESTDIR}/tests/remplaza.o ${OBJECTFILES:%.o=%_nomain.o}
+	${MKDIR} -p ${TESTDIR}/TestFiles
+	${LINK.c} -o ${TESTDIR}/TestFiles/f4 $^ ${LDLIBSOPTIONS}   -lcunit 
+
 ${TESTDIR}/TestFiles/f3: ${TESTDIR}/tests/orden.o ${OBJECTFILES:%.o=%_nomain.o}
 	${MKDIR} -p ${TESTDIR}/TestFiles
 	${LINK.c} -o ${TESTDIR}/TestFiles/f3 $^ ${LDLIBSOPTIONS}   -lcunit 
+
+
+${TESTDIR}/tests/invertir.o: tests/invertir.c 
+	${MKDIR} -p ${TESTDIR}/tests
+	${RM} "$@.d"
+	$(COMPILE.c) -g -MMD -MP -MF "$@.d" -o ${TESTDIR}/tests/invertir.o tests/invertir.c
 
 
 ${TESTDIR}/tests/tes2.o: tests/tes2.c 
@@ -117,6 +135,12 @@ ${TESTDIR}/tests/recorrer.o: tests/recorrer.c
 	${MKDIR} -p ${TESTDIR}/tests
 	${RM} "$@.d"
 	$(COMPILE.c) -g -MMD -MP -MF "$@.d" -o ${TESTDIR}/tests/recorrer.o tests/recorrer.c
+
+
+${TESTDIR}/tests/remplaza.o: tests/remplaza.c 
+	${MKDIR} -p ${TESTDIR}/tests
+	${RM} "$@.d"
+	$(COMPILE.c) -g -MMD -MP -MF "$@.d" -o ${TESTDIR}/tests/remplaza.o tests/remplaza.c
 
 
 ${TESTDIR}/tests/orden.o: tests/orden.c 
@@ -155,8 +179,10 @@ ${OBJECTDIR}/main_nomain.o: ${OBJECTDIR}/main.o main.c
 .test-conf:
 	@if [ "${TEST}" = "" ]; \
 	then  \
+	    ${TESTDIR}/TestFiles/f5 || true; \
 	    ${TESTDIR}/TestFiles/f2 || true; \
 	    ${TESTDIR}/TestFiles/f1 || true; \
+	    ${TESTDIR}/TestFiles/f4 || true; \
 	    ${TESTDIR}/TestFiles/f3 || true; \
 	else  \
 	    ./${TEST} || true; \

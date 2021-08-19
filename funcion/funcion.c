@@ -7,6 +7,7 @@
 //V puntero de vector 
 //C puntero de cadena
 //cant = cantidad de datos
+
 void recorrer(int *V, char *C, int cant) {
     char aux[5000];
     char convertir_2[5];
@@ -15,9 +16,9 @@ void recorrer(int *V, char *C, int cant) {
     int i;
     for (i = 0; i < cant; i++) {
         int dato = V[i];
-        if(dato<100){
-        sprintf(convertir, "%d", dato);    
-        }else{
+        if (dato < 100) {
+            sprintf(convertir, "%d", dato);
+        } else {
             sprintf(convertir_2, "%d", dato);
         }
         //1-20-3
@@ -34,12 +35,12 @@ void recorrer(int *V, char *C, int cant) {
             l += 2;
             aux[l] = '-';
             //prueva el siguiente dato para ajustar los incrementadores
-            if (dato+1 > 9 && dato+1 < 100) {
+            if (dato + 1 > 9 && dato + 1 < 100) {
                 j += 2;
                 l += 2;
-            }else{
-                j+=2;
-                l+=2;
+            } else {
+                j += 2;
+                l += 2;
             }
         }
         if (dato > 9 && dato < 100) {
@@ -55,78 +56,105 @@ void recorrer(int *V, char *C, int cant) {
             j += 2;
             l += 2;
         } else {
-            if(dato >0 && dato<9){   
-            //ejemplo 1-2-3-4-5-6-7-8-9
-            aux[j] = convertir[0];
-            aux[l] = '-';
-            j += 2;
-            l += 2;
+            if (dato > 0 && dato < 9) {
+                //ejemplo 1-2-3-4-5-6-7-8-9
+                aux[j] = convertir[0];
+                aux[l] = '-';
+                j += 2;
+                l += 2;
             }
         }
     }
     strcpy(C, aux);
     return;
 }
-
-void remplazar(int *V,int dato_a_remplazar,int Nuevo_dato ){
+//invierte el vector
+void invertir(int *V,int N) {
+    int j=0,aux_2[N];
+    for (int i = 1; i <= N; i++) {
+        aux_2[j]=V[N-i];
+        j++;
+    }
+     for (int i = 0; i < N; i++) {
+        V[i]=aux_2[i];
+    }
+   
     
+    
+    return;
 }
+
+
+
+//remplaza todos lo valores que sean iguales al dato de remplazo
+
+void remplazar(int *V, int dato_a_remplazar, int Nuevo_dato) {
+
+    int i;
+    for (i = 0; i < 5; i++) {
+        if (V[i] == dato_a_remplazar) {
+            V[i] = Nuevo_dato;
+        }
+    }
+    return;
+}
+
+
 
 
 
 
 //modifica un espacio de memoria concreto
+
 void modificar(int *V, int N_casilla, int dato_sustitullente) {
-    V[N_casilla]=dato_sustitullente;   
+    V[N_casilla] = dato_sustitullente;
     return;
 }
 
 //inserta un dato en un espacio de memoria concreto
-void insertar(int *V, int N_casilla, int dato_a_insertar){  
-    size_t cant= anchura(V);
-    bool verdad=false;
-    for(int i=0;i<cant;i++){
-        if(V[i]==NULL){
-            verdad=true;
-        }else{
-            verdad=false;
+
+void insertar(int *V, int N_casilla, int dato_a_insertar) {
+    size_t cant = anchura(V);
+    bool verdad = false;
+
+    if (verdad) {
+        // 0 1 2 3 4
+        // 1 5 6 7  ingresar dato en 2
+        // 1 5   6 7
+        int aux, aux2, k;
+        aux = V[N_casilla];
+        for (int i = N_casilla; i < cant; i++) {
+
         }
-    }
-    if(verdad){
-     // 0 1 2 3 4
-     // 1 5 6 7  ingresar dato en 2
-     // 1 5   6 7
-     int aux,aux2,k;   
-     aux=V[N_casilla];   
-     for(int i=N_casilla;i<cant;i++){
-         
-     }   
-        
-    }else{
+
+    } else {
         return;
     }
+    return;
 }
 
 //borra un espacio de memoria concreto
+
 void borra(int *V, int N_casilla) {
-    V[N_casilla]=0;   
+    V[N_casilla] = 0;
     return;
 }
 
 
 //ordenamiento por incerccion
-void ordenamiento(int *V,int N){
-     int aux,i,j;
-    for (j = 1; j < N ;j++) {
-        aux=V[j];
-        i=j-1;
-        while(i>-1 && V[i] > aux){
-            V[i+1]=V[i];
+
+void ordenamiento(int *V, int N) {
+    int aux, i, j;
+    for (j = 1; j < N; j++) {
+        aux = V[j];
+        i = j - 1;
+        while (i>-1 && V[i] > aux) {
+            V[i + 1] = V[i];
             i--;
         }
-        V[i+1]=aux;
+        V[i + 1] = aux;
     }
 
-     
+    return;
 }
 
