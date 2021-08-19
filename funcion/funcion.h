@@ -19,4 +19,8 @@ void remplazar(int *V,int dato_a_remplazar,int Nuevo_dato );
 
 void invertir(int *V,int N);
 
+void redimencionar(int *v,int nueva_dimencion);
+
+void poner_cero_todo(int *V);
+
 #endif /* FUNCIONES_H */

@@ -1,12 +1,18 @@
 #include <stdio.h>
 #include <string.h>
 #include "funcion.h"
+#include <stdlib.h>//memoria dinamica
 #include <stdbool.h>
 //sprintf(c, "%d", n);
 //convierte los valores enteros del vector a una cadena de char y de vuelve el dato mediante un puntero
 //V puntero de vector 
 //C puntero de cadena
 //cant = cantidad de datos
+
+void poner_cero_todo(){
+    
+}
+
 
 void recorrer(int *V, char *C, int cant) {
     char aux[5000];
@@ -68,21 +74,47 @@ void recorrer(int *V, char *C, int cant) {
     strcpy(C, aux);
     return;
 }
+
+
+
+
 //invierte el vector
-void invertir(int *V,int N) {
-    int j=0,aux_2[N];
+// V vector
+//N tamaño de vector
+
+void invertir(int *V, int N) {
+    int j = 0, aux_2[N];
     for (int i = 1; i <= N; i++) {
-        aux_2[j]=V[N-i];
+        aux_2[j] = V[N - i];
         j++;
     }
-     for (int i = 0; i < N; i++) {
-        V[i]=aux_2[i];
+    for (int i = 0; i < N; i++) {
+        V[i] = aux_2[i];
     }
-   
-    
-    
     return;
 }
+
+
+
+
+
+//redimenciona el vecto con memoria dinamica
+// v vector
+// nueva dimencion 
+void redimencionar(int *v, int nueva_dimencion) {
+    int *p, i;
+    size_t cant = anchura(v);
+    p = (int *) calloc(cant, sizeof (int));
+    for (i = 0; i < cant; i++)
+        p[i] = v[i];
+
+    v = (int *) calloc(nueva_dimencion, sizeof (int));
+    for (i = 0; i < cant; i++)
+        v[i] = p[i];
+}
+
+
+
 
 
 
@@ -112,7 +144,10 @@ void modificar(int *V, int N_casilla, int dato_sustitullente) {
 }
 
 //inserta un dato en un espacio de memoria concreto
-
+// V =vector
+// N_casilla seleciona el espaci d memoria
+//dato_a_insertar
+//este metodo solo funciona cuando esta ordenado el vector 
 void insertar(int *V, int N_casilla, int dato_a_insertar) {
     size_t cant = anchura(V);
     bool verdad = false;
@@ -142,13 +177,14 @@ void borra(int *V, int N_casilla) {
 
 
 //ordenamiento por incerccion
-
+//V vector
+//N tamaño del vector
 void ordenamiento(int *V, int N) {
     int aux, i, j;
     for (j = 1; j < N; j++) {
         aux = V[j];
         i = j - 1;
-        while (i>-1 && V[i] > aux) {
+        while (i>-1 && V[i] < aux) {
             V[i + 1] = V[i];
             i--;
         }
