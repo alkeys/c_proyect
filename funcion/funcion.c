@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <string.h>
 #include "funcion.h"
-
+#include <stdbool.h>
 //sprintf(c, "%d", n);
 //convierte los valores enteros del vector a una cadena de char y de vuelve el dato mediante un puntero
 //V puntero de vector 
@@ -68,6 +68,13 @@ void recorrer(int *V, char *C, int cant) {
     return;
 }
 
+void remplazar(int *V,int dato_a_remplazar,int Nuevo_dato ){
+    
+}
+
+
+
+
 //modifica un espacio de memoria concreto
 void modificar(int *V, int N_casilla, int dato_sustitullente) {
     V[N_casilla]=dato_sustitullente;   
@@ -76,8 +83,28 @@ void modificar(int *V, int N_casilla, int dato_sustitullente) {
 
 //inserta un dato en un espacio de memoria concreto
 void insertar(int *V, int N_casilla, int dato_a_insertar){  
-    int aux[N_casilla];
-    
+    size_t cant= anchura(V);
+    bool verdad=false;
+    for(int i=0;i<cant;i++){
+        if(V[i]==NULL){
+            verdad=true;
+        }else{
+            verdad=false;
+        }
+    }
+    if(verdad){
+     // 0 1 2 3 4
+     // 1 5 6 7  ingresar dato en 2
+     // 1 5   6 7
+     int aux,aux2,k;   
+     aux=V[N_casilla];   
+     for(int i=N_casilla;i<cant;i++){
+         
+     }   
+        
+    }else{
+        return;
+    }
 }
 
 //borra un espacio de memoria concreto
@@ -85,3 +112,21 @@ void borra(int *V, int N_casilla) {
     V[N_casilla]=0;   
     return;
 }
+
+
+//ordenamiento por incerccion
+void ordenamiento(int *V,int N){
+     int aux,i,j;
+    for (j = 1; j < N ;j++) {
+        aux=V[j];
+        i=j-1;
+        while(i>-1 && V[i] > aux){
+            V[i+1]=V[i];
+            i--;
+        }
+        V[i+1]=aux;
+    }
+
+     
+}
+

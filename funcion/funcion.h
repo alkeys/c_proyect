@@ -13,5 +13,6 @@ void insertar(int *V, int N_casilla, int dato_a_insertar);
 
 void borra(int *V, int N_casilla);
 
+void ordenamiento(int *V,int N);
 
 #endif /* FUNCIONES_H */

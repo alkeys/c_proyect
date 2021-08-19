@@ -44,10 +44,12 @@ TESTDIR=${CND_BUILDDIR}/${CND_CONF}/${CND_PLATFORM}/tests
 # Test Files
 TESTFILES= \
 	${TESTDIR}/TestFiles/f2 \
-	${TESTDIR}/TestFiles/f1
+	${TESTDIR}/TestFiles/f1 \
+	${TESTDIR}/TestFiles/f3
 
 # Test Object Files
 TESTOBJECTFILES= \
+	${TESTDIR}/tests/orden.o \
 	${TESTDIR}/tests/recorrer.o \
 	${TESTDIR}/tests/tes2.o
 
@@ -100,6 +102,10 @@ ${TESTDIR}/TestFiles/f1: ${TESTDIR}/tests/recorrer.o ${OBJECTFILES:%.o=%_nomain.
 	${MKDIR} -p ${TESTDIR}/TestFiles
 	${LINK.c} -o ${TESTDIR}/TestFiles/f1 $^ ${LDLIBSOPTIONS}   -lcunit 
 
+${TESTDIR}/TestFiles/f3: ${TESTDIR}/tests/orden.o ${OBJECTFILES:%.o=%_nomain.o}
+	${MKDIR} -p ${TESTDIR}/TestFiles
+	${LINK.c} -o ${TESTDIR}/TestFiles/f3 $^ ${LDLIBSOPTIONS}   -lcunit 
+
 
 ${TESTDIR}/tests/tes2.o: tests/tes2.c 
 	${MKDIR} -p ${TESTDIR}/tests
@@ -111,6 +117,12 @@ ${TESTDIR}/tests/recorrer.o: tests/recorrer.c
 	${MKDIR} -p ${TESTDIR}/tests
 	${RM} "$@.d"
 	$(COMPILE.c) -g -MMD -MP -MF "$@.d" -o ${TESTDIR}/tests/recorrer.o tests/recorrer.c
+
+
+${TESTDIR}/tests/orden.o: tests/orden.c 
+	${MKDIR} -p ${TESTDIR}/tests
+	${RM} "$@.d"
+	$(COMPILE.c) -g -MMD -MP -MF "$@.d" -o ${TESTDIR}/tests/orden.o tests/orden.c
 
 
 ${OBJECTDIR}/funcion/funcion_nomain.o: ${OBJECTDIR}/funcion/funcion.o funcion/funcion.c 
@@ -145,6 +157,7 @@ ${OBJECTDIR}/main_nomain.o: ${OBJECTDIR}/main.o main.c
 	then  \
 	    ${TESTDIR}/TestFiles/f2 || true; \
 	    ${TESTDIR}/TestFiles/f1 || true; \
+	    ${TESTDIR}/TestFiles/f3 || true; \
 	else  \
 	    ./${TEST} || true; \
 	fi
