@@ -9,10 +9,13 @@
 //C puntero de cadena
 //cant = cantidad de datos
 
-void poner_cero_todo(){
-    
-}
+void p_cero(int *V, int N) {
+    int i;
+    for (i = 0; i < N; i++) {
+        V[i] = 0;
+    }
 
+}
 
 void recorrer(int *V, char *C, int cant) {
     char aux[5000];
@@ -96,11 +99,10 @@ void invertir(int *V, int N) {
 
 
 
-
-
 //redimenciona el vecto con memoria dinamica
 // v vector
 // nueva dimencion 
+
 void redimencionar(int *v, int nueva_dimencion) {
     int *p, i;
     size_t cant = anchura(v);
@@ -119,9 +121,9 @@ void redimencionar(int *v, int nueva_dimencion) {
 
 
 //remplaza todos lo valores que sean iguales al dato de remplazo
+// V = vector
 
 void remplazar(int *V, int dato_a_remplazar, int Nuevo_dato) {
-
     int i;
     for (i = 0; i < 5; i++) {
         if (V[i] == dato_a_remplazar) {
@@ -136,6 +138,7 @@ void remplazar(int *V, int dato_a_remplazar, int Nuevo_dato) {
 
 
 
+
 //modifica un espacio de memoria concreto
 
 void modificar(int *V, int N_casilla, int dato_sustitullente) {
@@ -143,42 +146,52 @@ void modificar(int *V, int N_casilla, int dato_sustitullente) {
     return;
 }
 
+
+
+
+
+
 //inserta un dato en un espacio de memoria concreto
 // V =vector
 // N_casilla seleciona el espaci d memoria
 //dato_a_insertar
 //este metodo solo funciona cuando esta ordenado el vector 
-void insertar(int *V, int N_casilla, int dato_a_insertar) {
+
+void insertar(int *V, int N_casilla, int dato_a_insertar, int N) {
     size_t cant = anchura(V);
-    bool verdad = false;
-
-    if (verdad) {
-        // 0 1 2 3 4
-        // 1 5 6 7  ingresar dato en 2
-        // 1 5   6 7
-        int aux, aux2, k;
-        aux = V[N_casilla];
-        for (int i = N_casilla; i < cant; i++) {
-
+    bool verdad = true;
+    int j,pos;
+    for (j = 0; j < N; j++) {
+        if(V[j]==0){
+            pos=j;
         }
-
-    } else {
-        return;
+    }
+    int aux = V[N_casilla];
+    int aux2;
+    V[N_casilla] = dato_a_insertar;
+    int i = N_casilla+1;
+    for (i ; i < pos; i++) {
+        aux2=V[i];
+        V[i]=aux;
+        aux=aux2;
     }
     return;
 }
 
-//borra un espacio de memoria concreto
 
+
+//borra un espacio de memoria concreto
 void borra(int *V, int N_casilla) {
     V[N_casilla] = 0;
     return;
 }
 
 
+
 //ordenamiento por incerccion
 //V vector
 //N tamaño del vector
+
 void ordenamiento(int *V, int N) {
     int aux, i, j;
     for (j = 1; j < N; j++) {
@@ -194,3 +207,13 @@ void ordenamiento(int *V, int N) {
     return;
 }
 
+
+void buscar_remplazar(int *V,int numero,int remplazo,int N){
+    int i;
+    for (i = 0; i < N; i++) {
+        if(V[i]==numero){
+            V[i]=remplazo;
+        }
+    }
+
+}
