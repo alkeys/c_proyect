@@ -8,7 +8,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <CUnit/Basic.h>
-
+#include <../funcion/funcion.h>
 /*
  * CUnit Test Suite
  */

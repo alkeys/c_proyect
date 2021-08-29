@@ -3,21 +3,26 @@
 #include "funcion.h"
 #include <stdlib.h>//memoria dinamica
 #include <stdbool.h>
+
 //sprintf(c, "%d", n);
 //convierte los valores enteros del vector a una cadena de char y de vuelve el dato mediante un puntero
 //V puntero de vector 
 //C puntero de cadena
 //cant = cantidad de datos
 
-void p_cero(int *V, int N) {
+typedef int tipo_dato;
+
+
+
+void p_cero(tipo_dato *V, int N) {
     int i;
     for (i = 0; i < N; i++) {
         V[i] = 0;
-    }
+    }}
 
-}
 
-void recorrer(int *V, char *C, int cant) {
+
+void recorrer(tipo_dato *V, char *C, int cant) {
     char aux[5000];
     char convertir_2[5];
     char convertir[3];
@@ -80,12 +85,11 @@ void recorrer(int *V, char *C, int cant) {
 
 
 
-
 //invierte el vector
 // V vector
 //N tamaño de vector
 
-void invertir(int *V, int N) {
+void invertir(tipo_dato *V, int N) {
     int j = 0, aux_2[N];
     for (int i = 1; i <= N; i++) {
         aux_2[j] = V[N - i];
@@ -99,11 +103,12 @@ void invertir(int *V, int N) {
 
 
 
+
+
 //redimenciona el vecto con memoria dinamica
 // v vector
 // nueva dimencion 
-
-void redimencionar(int *v, int nueva_dimencion) {
+void redimencionar(tipo_dato *v, int nueva_dimencion) {
     int *p, i;
     size_t cant = anchura(v);
     p = (int *) calloc(cant, sizeof (int));
@@ -123,7 +128,8 @@ void redimencionar(int *v, int nueva_dimencion) {
 //remplaza todos lo valores que sean iguales al dato de remplazo
 // V = vector
 
-void remplazar(int *V, int dato_a_remplazar, int Nuevo_dato) {
+void remplazar(tipo_dato *V, tipo_dato dato_a_remplazar, tipo_dato Nuevo_dato) {
+
     int i;
     for (i = 0; i < 5; i++) {
         if (V[i] == dato_a_remplazar) {
@@ -138,62 +144,51 @@ void remplazar(int *V, int dato_a_remplazar, int Nuevo_dato) {
 
 
 
-
 //modifica un espacio de memoria concreto
 
-void modificar(int *V, int N_casilla, int dato_sustitullente) {
+void modificar(tipo_dato *V, int N_casilla, tipo_dato dato_sustitullente) {
     V[N_casilla] = dato_sustitullente;
     return;
 }
-
-
-
-
-
 
 //inserta un dato en un espacio de memoria concreto
 // V =vector
 // N_casilla seleciona el espaci d memoria
 //dato_a_insertar
 //este metodo solo funciona cuando esta ordenado el vector 
-
-void insertar(int *V, int N_casilla, int dato_a_insertar, int N) {
+void insertar(tipo_dato *V, int N_casilla, tipo_dato dato_a_insertar) {
     size_t cant = anchura(V);
-    bool verdad = true;
-    int j,pos;
-    for (j = 0; j < N; j++) {
-        if(V[j]==0){
-            pos=j;
+    bool verdad = false;
+
+    if (verdad) {
+        // 0 1 2 3 4
+        // 1 5 6 7  ingresar dato en 2
+        // 1 5   6 7
+        int aux, aux2, k;
+        aux = V[N_casilla];
+        for (int i = N_casilla; i < cant; i++) {
+
         }
-    }
-    int aux = V[N_casilla];
-    int aux2;
-    V[N_casilla] = dato_a_insertar;
-    int i = N_casilla+1;
-    for (i ; i < pos; i++) {
-        aux2=V[i];
-        V[i]=aux;
-        aux=aux2;
+
+    } else {
+        return;
     }
     return;
 }
 
-
-
 //borra un espacio de memoria concreto
-void borra(int *V, int N_casilla) {
+
+void borra(tipo_dato *V, int N_casilla) {
     V[N_casilla] = 0;
     return;
 }
 
 
-
 //ordenamiento por incerccion
 //V vector
 //N tamaño del vector
-
-void ordenamiento(int *V, int N) {
-    int aux, i, j;
+void ordenamiento(tipo_dato *V, int N) {
+    tipo_dato aux, i, j;
     for (j = 1; j < N; j++) {
         aux = V[j];
         i = j - 1;
@@ -208,7 +203,7 @@ void ordenamiento(int *V, int N) {
 }
 
 
-void buscar_remplazar(int *V,int numero,int remplazo,int N){
+void buscar_remplazar(tipo_dato *V,tipo_dato numero,tipo_dato remplazo,int N){
     int i;
     for (i = 0; i < N; i++) {
         if(V[i]==numero){
@@ -217,3 +212,21 @@ void buscar_remplazar(int *V,int numero,int remplazo,int N){
     }
 
 }
+
+void matrix_traspuesta(tipo_dato **V){
+    tipo_dato **v_1;
+    int i,j;
+    for (i = 0; i < filas(V); i++) {
+        for (j = 0; j < colunas(V); j++) {
+            printf("hola %d    %d",i,j);
+        }
+
+    }
+
+    
+    
+}
+
+
+
+

@@ -5,23 +5,39 @@
 
 #define anchura(vector) (sizeof(vector)/sizeof(vector[0]))
 
-void recorrer(int *V,char *C,int cant);
+#define filas(vector) (sizeof(vector)/sizeof(vector[0]))
 
-void modificar(int *V,int N_casilla,int dato_sustitullente);
+#define colunas(vector) ((sizeof(vector)/sizeof(vector[0][0]))/filas(vector))
 
-void insertar(int *V, int N_casilla, int dato_a_insertar,int N);
+typedef int tipo_dato;
 
-void borra(int *V, int N_casilla);
 
-void ordenamiento(int *V,int N);
+struct mi_vector_carcteristicas{
 
-void remplazar(int *V,int dato_a_remplazar,int Nuevo_dato );
+    int filas;
+    int colunas;
+};
 
-void invertir(int *V,int N);
+void matrix_traspuesta(tipo_dato **V);
 
-void redimencionar(int *v,int nueva_dimencion);
+void recorrer(tipo_dato *V,char *C,int cant);
 
-void p_cero(int *V,int N);
+void modificar(tipo_dato *V,int N_casilla,tipo_dato dato_sustitullente);
 
-void buscar_remplazar(int *V,int numero,int remplazo,int N);
+void insertar(tipo_dato *V, int N_casilla, tipo_dato dato_a_insertar);
+
+void borra(tipo_dato *V, int N_casilla);
+
+void ordenamiento(tipo_dato *V,int N);
+
+void remplazar(tipo_dato *V,tipo_dato dato_a_remplazar,tipo_dato Nuevo_dato );
+
+void invertir(tipo_dato *V,int N);
+
+void redimencionar(tipo_dato *v,tipo_dato nueva_dimencion);
+
+void poner_cero_todo(tipo_dato *V);
+
+void buscar_remplazar(tipo_dato *V,tipo_dato numero,tipo_dato remplazo,int N);
+
 #endif /* FUNCIONES_H */

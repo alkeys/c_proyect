@@ -12,10 +12,9 @@
 #include "funcion/funcion.h"
 
 int main(int argc, char** argv) {
-//cantidad maxima de datos = 0 a 999
-
-
-    
+    tipo_dato V[8][7];
+    tipo_dato **p=V;
+    printf("%d",*(*(p[0])));
     return (EXIT_SUCCESS);
 }
 

@@ -8,6 +8,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <CUnit/Basic.h>
+#
 
 
 /*
@@ -23,11 +24,7 @@ int clean_suite(void) {
 }
 
 void testRecorrer() {
-    int V[]={1,254,40,8,9,4,100,5};
-    char c[100];
-    int cant=8;
-    recorrer(V, c, cant);
-    CU_ASSERT_STRING_EQUAL(c,"1-254-40-8-4-100-5-");
+
 }
 
 int main() {

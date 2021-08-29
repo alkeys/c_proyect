@@ -1,14 +1,14 @@
 /*
- * File:   isertar.c
+ * File:   newcunittest9.c
  * Author: avi
  *
- * Created on 19 ago. 2021, 17:53:56
+ * Created on 28 ago. 2021, 23:23:45
  */
 
 #include <stdio.h>
 #include <stdlib.h>
 #include <CUnit/Basic.h>
-#include "funcion/funcion.h"
+#include "../funcion/funcion.h"
 
 /*
  * CUnit Test Suite
@@ -22,14 +22,17 @@ int clean_suite(void) {
     return 0;
 }
 
-void testInsertar() {
-    int* V;
-    int N_casilla;
-    int dato_a_insertar;
-    insertar(V, N_casilla, dato_a_insertar);
-    if (1 /*check result*/) {
-        CU_ASSERT(0);
-    }
+void testOrdenamiento() {
+    tipo_dato V[3];
+    V[0]=6;
+    V[1]=7;
+    V[2]=8;
+    int N;
+    ordenamiento(V, N);
+    CU_ASSERT_EQUAL(V[0],8);
+    CU_ASSERT_EQUAL(V[1],6);
+    CU_ASSERT_EQUAL(V[2],7);
+
 }
 
 int main() {
@@ -40,14 +43,14 @@ int main() {
         return CU_get_error();
 
     /* Add a suite to the registry */
-    pSuite = CU_add_suite("isertar", init_suite, clean_suite);
+    pSuite = CU_add_suite("newcunittest9", init_suite, clean_suite);
     if (NULL == pSuite) {
         CU_cleanup_registry();
         return CU_get_error();
     }
 
     /* Add the tests to the suite */
-    if ((NULL == CU_add_test(pSuite, "testInsertar", testInsertar))) {
+    if ((NULL == CU_add_test(pSuite, "testOrdenamiento", testOrdenamiento))) {
         CU_cleanup_registry();
         return CU_get_error();
     }

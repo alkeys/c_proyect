@@ -2,13 +2,12 @@
  * File:   newcunittest6.c
  * Author: avi
  *
- * Created on 19 ago. 2021, 17:32:38
+ * Created on 28 ago. 2021, 22:27:02
  */
 
 #include <stdio.h>
 #include <stdlib.h>
 #include <CUnit/Basic.h>
-
 
 /*
  * CUnit Test Suite
@@ -22,15 +21,17 @@ int clean_suite(void) {
     return 0;
 }
 
-void testP_cero() {
-    int V[5];
-    int N=5;
-    p_cero(V, N);
-    int i;
-    for (i = 0; i < N; i++) {
-        CU_ASSERT_EQUAL(V[i],0);
-    }
+void buscar_remplazar(double* V, int numero, int remplazo, int N);
 
+void testBuscar_remplazar() {
+    doublez* V;
+    int numero;
+    int remplazo;
+    int N;
+    buscar_remplazar(V, numero, remplazo, N);
+    if (1 /*check result*/) {
+        CU_ASSERT(0);
+    }
 }
 
 int main() {
@@ -48,7 +49,7 @@ int main() {
     }
 
     /* Add the tests to the suite */
-    if ((NULL == CU_add_test(pSuite, "testP_cero", testP_cero))) {
+    if ((NULL == CU_add_test(pSuite, "testBuscar_remplazar", testBuscar_remplazar))) {
         CU_cleanup_registry();
         return CU_get_error();
     }

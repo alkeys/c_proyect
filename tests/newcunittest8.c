@@ -1,13 +1,16 @@
 /*
- * File:   buscar.c
+ * File:   newcunittest8.c
  * Author: avi
  *
- * Created on 19 ago. 2021, 18:42:25
+ * Created on 28 ago. 2021, 23:16:13
  */
 
 #include <stdio.h>
 #include <stdlib.h>
 #include <CUnit/Basic.h>
+//#include "../funcion/funcion.h"
+typedef int tipo_dato;
+
 
 /*
  * CUnit Test Suite
@@ -21,18 +24,15 @@ int clean_suite(void) {
     return 0;
 }
 
-void buscar_remplazar(int* V, int numero, int remplazo, int N);
+void p_cero(tipo_dato* V, int N);
 
-void testBuscar_remplazar() {
-    int V[5];
-    V[0]=8;
-    V[1]=7;
-    V[2]=8;
-    V[3]=7;
-    V[4]=9;
-    buscar_remplazar(V,7,3,5);
-    CU_ASSERT_EQUAL(V[1],3);
-    CU_ASSERT_EQUAL(V[3],3);
+void testP_cero() {
+    tipo_dato V[2];
+    V[0]=2;
+    V[1]=3;
+    int N=2;
+    p_cero(V, N);
+    CU_ASSERT_EQUAL(V[0],0);
     
 }
 
@@ -44,14 +44,14 @@ int main() {
         return CU_get_error();
 
     /* Add a suite to the registry */
-    pSuite = CU_add_suite("buscar", init_suite, clean_suite);
+    pSuite = CU_add_suite("newcunittest8", init_suite, clean_suite);
     if (NULL == pSuite) {
         CU_cleanup_registry();
         return CU_get_error();
     }
 
     /* Add the tests to the suite */
-    if ((NULL == CU_add_test(pSuite, "testBuscar_remplazar", testBuscar_remplazar))) {
+    if ((NULL == CU_add_test(pSuite, "testP_cero", testP_cero))) {
         CU_cleanup_registry();
         return CU_get_error();
     }
