@@ -5,20 +5,17 @@
 
 #define anchura(vector) (sizeof(vector)/sizeof(vector[0]))
 
-#define filas(vector) (sizeof(vector)/sizeof(vector[0]))
 
-#define colunas(vector) ((sizeof(vector)/sizeof(vector[0][0]))/filas(vector))
 
 typedef int tipo_dato;
 
 
 struct mi_vector_carcteristicas{
-
     int filas;
     int colunas;
 };
 
-void matrix_traspuesta(tipo_dato **V);
+void matrix_traspuesta(tipo_dato **V,int filas,int colunas);
 
 void recorrer(tipo_dato *V,char *C,int cant);
 

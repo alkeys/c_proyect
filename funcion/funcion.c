@@ -10,17 +10,18 @@
 //C puntero de cadena
 //cant = cantidad de datos
 
-typedef int tipo_dato;
 
 
+#define filas(vector) (sizeof(vector)/sizeof(vector[0]))
+
+#define colunas(vector) ((sizeof(vector)/sizeof(vector[0][0]))/filas(vector))
 
 void p_cero(tipo_dato *V, int N) {
     int i;
     for (i = 0; i < N; i++) {
         V[i] = 0;
-    }}
-
-
+    }
+}
 
 void recorrer(tipo_dato *V, char *C, int cant) {
     char aux[5000];
@@ -108,14 +109,15 @@ void invertir(tipo_dato *V, int N) {
 //redimenciona el vecto con memoria dinamica
 // v vector
 // nueva dimencion 
+
 void redimencionar(tipo_dato *v, int nueva_dimencion) {
     int *p, i;
     size_t cant = anchura(v);
-    p = (int *) calloc(cant, sizeof (int));
+    p = (tipo_dato *) calloc(cant, sizeof (tipo_dato));
     for (i = 0; i < cant; i++)
         p[i] = v[i];
 
-    v = (int *) calloc(nueva_dimencion, sizeof (int));
+    v = (tipo_dato *) calloc(nueva_dimencion, sizeof (tipo_dato));
     for (i = 0; i < cant; i++)
         v[i] = p[i];
 }
@@ -156,6 +158,7 @@ void modificar(tipo_dato *V, int N_casilla, tipo_dato dato_sustitullente) {
 // N_casilla seleciona el espaci d memoria
 //dato_a_insertar
 //este metodo solo funciona cuando esta ordenado el vector 
+
 void insertar(tipo_dato *V, int N_casilla, tipo_dato dato_a_insertar) {
     size_t cant = anchura(V);
     bool verdad = false;
@@ -187,6 +190,7 @@ void borra(tipo_dato *V, int N_casilla) {
 //ordenamiento por incerccion
 //V vector
 //N tamaño del vector
+
 void ordenamiento(tipo_dato *V, int N) {
     tipo_dato aux, i, j;
     for (j = 1; j < N; j++) {
@@ -202,29 +206,42 @@ void ordenamiento(tipo_dato *V, int N) {
     return;
 }
 
-
-void buscar_remplazar(tipo_dato *V,tipo_dato numero,tipo_dato remplazo,int N){
+void buscar_remplazar(tipo_dato *V, tipo_dato numero, tipo_dato remplazo, int N) {
     int i;
     for (i = 0; i < N; i++) {
-        if(V[i]==numero){
-            V[i]=remplazo;
+        if (V[i] == numero) {
+            V[i] = remplazo;
         }
     }
 
 }
 
-void matrix_traspuesta(tipo_dato **V){
-    tipo_dato **v_1;
-    int i,j;
-    for (i = 0; i < filas(V); i++) {
-        for (j = 0; j < colunas(V); j++) {
-            printf("hola %d    %d",i,j);
-        }
-
+void matrix_traspuesta(tipo_dato **V, int filas, int colunas) {
+    tipo_dato **vector_aux;
+    int i, j, aux = 0; 
+  
+    vector_aux = (tipo_dato **) malloc(colunas * sizeof (tipo_dato*));
+    for (i = 0; i < colunas; i++) {
+        vector_aux[i] = (tipo_dato *) malloc(filas * sizeof (tipo_dato));
     }
-
-    
-    
+    for (i = 0; i < colunas; i++) {
+    for (j = 0; j < filas ; j++) {
+        vector_aux[i][j]=V[j][i];
+    }   
+    }
+    free(V);
+ //redimencion de matriz
+    V = (tipo_dato **) malloc(colunas * sizeof (tipo_dato*));
+    for (i = 0; i < colunas; i++) {
+        V[i] = (tipo_dato *) malloc(filas * sizeof (tipo_dato));
+    }
+    for (i = 0; i < colunas; i++) {
+    for (j = 0; j < filas ; j++) {
+        V[i][j]=vector_aux[i][j];
+    }   
+    }
+    free(vector_aux);
+    return;
 }
 
 
