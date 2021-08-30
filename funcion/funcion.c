@@ -235,6 +235,7 @@ void matrix_traspuesta(tipo_dato **V, int filas, int colunas) {
     for (i = 0; i < colunas; i++) {
         V[i] = (tipo_dato *) malloc(filas * sizeof (tipo_dato));
     }
+    //se copian lo nuevos valores
     for (i = 0; i < colunas; i++) {
     for (j = 0; j < filas ; j++) {
         V[i][j]=vector_aux[i][j];

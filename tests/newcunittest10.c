@@ -1,8 +1,8 @@
 /*
- * File:   newcunittest9.c
+ * File:   newcunittest10.c
  * Author: avi
  *
- * Created on 28 ago. 2021, 23:23:45
+ * Created on 29 ago. 2021, 18:51:02
  */
 
 #include <stdio.h>
@@ -22,17 +22,24 @@ int clean_suite(void) {
     return 0;
 }
 
-void testOrdenamiento() {
-    tipo_dato V[3];
-    V[0]=6;
-    V[1]=7;
-    V[2]=8;
-    int N=3;
-    ordenamiento(V, N);
-    CU_ASSERT_EQUAL(V[0],8);
-    CU_ASSERT_EQUAL(V[1],7);
-    CU_ASSERT_EQUAL(V[2],6);
-
+void testMatrix_traspuesta() {
+    tipo_dato **V;
+    V = (tipo_dato **) malloc(3 *sizeof (tipo_dato*));
+    int i,j;
+    for (i = 0; i < 3; i++) {
+        V[i]=(tipo_dato *) malloc(2 *sizeof (tipo_dato));
+    }
+    V[0][0]=1;
+    V[0][1]=2;
+    V[1][0]=3;
+    V[1][1]=4;
+    V[2][0]=5;
+    V[2][1]=6;
+    matrix_traspuesta(V,3,2);
+    CU_ASSERT_EQUAL(V[0][0],1);
+    CU_ASSERT_EQUAL(V[0][1],3);
+    CU_ASSERT_EQUAL(V[0][2],5);
+  
 }
 
 int main() {
@@ -43,14 +50,14 @@ int main() {
         return CU_get_error();
 
     /* Add a suite to the registry */
-    pSuite = CU_add_suite("newcunittest9", init_suite, clean_suite);
+    pSuite = CU_add_suite("newcunittest10", init_suite, clean_suite);
     if (NULL == pSuite) {
         CU_cleanup_registry();
         return CU_get_error();
     }
 
     /* Add the tests to the suite */
-    if ((NULL == CU_add_test(pSuite, "testOrdenamiento", testOrdenamiento))) {
+    if ((NULL == CU_add_test(pSuite, "testMatrix_traspuesta", testMatrix_traspuesta))) {
         CU_cleanup_registry();
         return CU_get_error();
     }

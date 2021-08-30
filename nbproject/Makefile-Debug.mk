@@ -44,10 +44,12 @@ TESTDIR=${CND_BUILDDIR}/${CND_CONF}/${CND_PLATFORM}/tests
 # Test Files
 TESTFILES= \
 	${TESTDIR}/TestFiles/f2 \
-	${TESTDIR}/TestFiles/f1
+	${TESTDIR}/TestFiles/f1 \
+	${TESTDIR}/TestFiles/f3
 
 # Test Object Files
 TESTOBJECTFILES= \
+	${TESTDIR}/tests/newcunittest10.o \
 	${TESTDIR}/tests/newcunittest8.o \
 	${TESTDIR}/tests/newcunittest9.o
 
@@ -100,6 +102,10 @@ ${TESTDIR}/TestFiles/f1: ${TESTDIR}/tests/newcunittest8.o ${OBJECTFILES:%.o=%_no
 	${MKDIR} -p ${TESTDIR}/TestFiles
 	${LINK.c} -o ${TESTDIR}/TestFiles/f1 $^ ${LDLIBSOPTIONS}   -lcunit 
 
+${TESTDIR}/TestFiles/f3: ${TESTDIR}/tests/newcunittest10.o ${OBJECTFILES:%.o=%_nomain.o}
+	${MKDIR} -p ${TESTDIR}/TestFiles
+	${LINK.c} -o ${TESTDIR}/TestFiles/f3 $^ ${LDLIBSOPTIONS}   -lcunit 
+
 
 ${TESTDIR}/tests/newcunittest9.o: tests/newcunittest9.c 
 	${MKDIR} -p ${TESTDIR}/tests
@@ -111,6 +117,12 @@ ${TESTDIR}/tests/newcunittest8.o: tests/newcunittest8.c
 	${MKDIR} -p ${TESTDIR}/tests
 	${RM} "$@.d"
 	$(COMPILE.c) -g -MMD -MP -MF "$@.d" -o ${TESTDIR}/tests/newcunittest8.o tests/newcunittest8.c
+
+
+${TESTDIR}/tests/newcunittest10.o: tests/newcunittest10.c 
+	${MKDIR} -p ${TESTDIR}/tests
+	${RM} "$@.d"
+	$(COMPILE.c) -g -MMD -MP -MF "$@.d" -o ${TESTDIR}/tests/newcunittest10.o tests/newcunittest10.c
 
 
 ${OBJECTDIR}/funcion/funcion_nomain.o: ${OBJECTDIR}/funcion/funcion.o funcion/funcion.c 
@@ -145,6 +157,7 @@ ${OBJECTDIR}/main_nomain.o: ${OBJECTDIR}/main.o main.c
 	then  \
 	    ${TESTDIR}/TestFiles/f2 || true; \
 	    ${TESTDIR}/TestFiles/f1 || true; \
+	    ${TESTDIR}/TestFiles/f3 || true; \
 	else  \
 	    ./${TEST} || true; \
 	fi

@@ -32,6 +32,12 @@
                      kind="TEST">
         <itemPath>tests/newcunittest8.c</itemPath>
       </logicalFolder>
+      <logicalFolder name="f3"
+                     displayName="trasponer"
+                     projectFiles="true"
+                     kind="TEST">
+        <itemPath>tests/newcunittest10.c</itemPath>
+      </logicalFolder>
     </logicalFolder>
     <logicalFolder name="ExternalFiles"
                    displayName="Important Files"
@@ -66,11 +72,21 @@
           </linkerLibItems>
         </linkerTool>
       </folder>
+      <folder path="TestFiles/f3">
+        <linkerTool>
+          <output>${TESTDIR}/TestFiles/f3</output>
+          <linkerLibItems>
+            <linkerOptionItem>-lcunit</linkerOptionItem>
+          </linkerLibItems>
+        </linkerTool>
+      </folder>
       <item path="funcion/funcion.c" ex="false" tool="0" flavor2="0">
       </item>
       <item path="funcion/funcion.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="main.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="tests/newcunittest10.c" ex="false" tool="0" flavor2="0">
       </item>
       <item path="tests/newcunittest8.c" ex="false" tool="0" flavor2="0">
       </item>
@@ -113,11 +129,21 @@
           </linkerLibItems>
         </linkerTool>
       </folder>
+      <folder path="TestFiles/f3">
+        <linkerTool>
+          <output>${TESTDIR}/TestFiles/f3</output>
+          <linkerLibItems>
+            <linkerOptionItem>-lcunit</linkerOptionItem>
+          </linkerLibItems>
+        </linkerTool>
+      </folder>
       <item path="funcion/funcion.c" ex="false" tool="0" flavor2="0">
       </item>
       <item path="funcion/funcion.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="main.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="tests/newcunittest10.c" ex="false" tool="0" flavor2="0">
       </item>
       <item path="tests/newcunittest8.c" ex="false" tool="0" flavor2="0">
       </item>
