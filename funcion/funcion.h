@@ -15,9 +15,10 @@ struct mi_vector_carcteristicas{
     int colunas;
 };
 
+void multliplicacion_matriz(tipo_dato **V_1,tipo_dato **V_2,tipo_dato **Vector_salida, int filas_aux,int colu_aux);
+
 void matrix_traspuesta(tipo_dato **V,int filas,int colunas);
 
-void recorrer(tipo_dato *V,char *C,int cant);
 
 void modificar(tipo_dato *V,int N_casilla,tipo_dato dato_sustitullente);
 

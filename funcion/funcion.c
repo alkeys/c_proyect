@@ -23,67 +23,6 @@ void p_cero(tipo_dato *V, int N) {
     }
 }
 
-void recorrer(tipo_dato *V, char *C, int cant) {
-    char aux[5000];
-    char convertir_2[5];
-    char convertir[3];
-    int j = 0, l = 1;
-    int i;
-    for (i = 0; i < cant; i++) {
-        int dato = V[i];
-        if (dato < 100) {
-            sprintf(convertir, "%d", dato);
-        } else {
-            sprintf(convertir_2, "%d", dato);
-        }
-        //1-20-3
-        //j=2 j=3
-        //l=3 == 4
-        if (dato >= 100 && dato <= 999) {
-            //0 1 2 3 4 5 6 7 8 9
-            //1 - 4 5 6 - 7 - 4 -
-            aux[j] = convertir_2[0];
-            j++;
-            aux[j] = convertir_2[1];
-            j++;
-            aux[j] = convertir_2[2]; //4byte
-            l += 2;
-            aux[l] = '-';
-            //prueva el siguiente dato para ajustar los incrementadores
-            if (dato + 1 > 9 && dato + 1 < 100) {
-                j += 2;
-                l += 2;
-            } else {
-                j += 2;
-                l += 2;
-            }
-        }
-        if (dato > 9 && dato < 100) {
-
-            //0 1 2 3 4 5 6 7
-            //1 - 2 0 - 3 0 -
-            aux[j] = convertir[0];
-            j++;
-            aux[j] = convertir[1];
-            l++;
-            aux[l] = '-';
-            //incrementadores
-            j += 2;
-            l += 2;
-        } else {
-            if (dato > 0 && dato < 9) {
-                //ejemplo 1-2-3-4-5-6-7-8-9
-                aux[j] = convertir[0];
-                aux[l] = '-';
-                j += 2;
-                l += 2;
-            }
-        }
-    }
-    strcpy(C, aux);
-    return;
-}
-
 
 
 //invierte el vector
@@ -113,11 +52,11 @@ void invertir(tipo_dato *V, int N) {
 void redimencionar(tipo_dato *v, int nueva_dimencion) {
     int *p, i;
     size_t cant = anchura(v);
-    p = (tipo_dato *) calloc(cant, sizeof (tipo_dato));
+    p = (tipo_dato *) malloc(cant*sizeof (tipo_dato));
     for (i = 0; i < cant; i++)
         p[i] = v[i];
 
-    v = (tipo_dato *) calloc(nueva_dimencion, sizeof (tipo_dato));
+    v = (tipo_dato *) malloc(nueva_dimencion*sizeof (tipo_dato));
     for (i = 0; i < cant; i++)
         v[i] = p[i];
 }
@@ -158,25 +97,10 @@ void modificar(tipo_dato *V, int N_casilla, tipo_dato dato_sustitullente) {
 // N_casilla seleciona el espaci d memoria
 //dato_a_insertar
 //este metodo solo funciona cuando esta ordenado el vector 
-
 void insertar(tipo_dato *V, int N_casilla, tipo_dato dato_a_insertar) {
-    size_t cant = anchura(V);
-    bool verdad = false;
 
-    if (verdad) {
-        // 0 1 2 3 4
-        // 1 5 6 7  ingresar dato en 2
-        // 1 5   6 7
-        int aux, aux2, k;
-        aux = V[N_casilla];
-        for (int i = N_casilla; i < cant; i++) {
-
-        }
-
-    } else {
-        return;
-    }
-    return;
+    
+    
 }
 
 //borra un espacio de memoria concreto
@@ -216,10 +140,56 @@ void buscar_remplazar(tipo_dato *V, tipo_dato numero, tipo_dato remplazo, int N)
 
 }
 
+//V_1 datos del primer vector
+//V_2 datos del segundo vector
+//Vector salida datos de salida de la multiplicacion
+//para multipicar matrix de la misma dimencion
+void multliplicacion_matriz(tipo_dato **V_1,tipo_dato **V_2,tipo_dato **Vector_salida,int filas_aux, int colu_aux){
+
+    int i,j,numero_salida=0,k,cont_aux=0;
+    
+    //variable para almacenar todos los datos
+    tipo_dato **matrix_c;
+       matrix_c = (tipo_dato **) malloc(filas_aux * sizeof (tipo_dato*));
+    for (i = 0; i < filas_aux; i++) {
+        matrix_c[i] = (tipo_dato *) malloc(colu_aux * sizeof (tipo_dato));
+    }
+       //bucle para la multiplicacion
+        for (i = 0; i < filas_aux; i++) {
+        for (j = 0; j < colu_aux; j++) {
+            for (k = 0; k < colu_aux; k++) {                
+                 numero_salida+=(V_1[i][k])*(V_2[k][j]);
+            }
+            matrix_c[i][j]=numero_salida;
+            cont_aux++;
+            numero_salida=0;
+        }
+        
+        }
+    
+       
+       
+    for (i = 0; i < filas_aux; i++) {
+        for (j = 0; j < colu_aux; j++) {
+            Vector_salida[i][j]=matrix_c[i][j];
+        }
+    }
+    free(matrix_c);
+    return;
+}
+
+
+
+
+/*
+ V=matriz 
+ filas=cantidad de filas 
+ 
+ */
 void matrix_traspuesta(tipo_dato **V, int filas, int colunas) {
     tipo_dato **vector_aux;
     int i, j, aux = 0; 
-  
+  //copia de datos a un vactor aux
     vector_aux = (tipo_dato **) malloc(colunas * sizeof (tipo_dato*));
     for (i = 0; i < colunas; i++) {
         vector_aux[i] = (tipo_dato *) malloc(filas * sizeof (tipo_dato));

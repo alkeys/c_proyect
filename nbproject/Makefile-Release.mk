@@ -43,15 +43,27 @@ TESTDIR=${CND_BUILDDIR}/${CND_CONF}/${CND_PLATFORM}/tests
 
 # Test Files
 TESTFILES= \
+	${TESTDIR}/TestFiles/f10 \
+	${TESTDIR}/TestFiles/f5 \
+	${TESTDIR}/TestFiles/f8 \
+	${TESTDIR}/TestFiles/f4 \
 	${TESTDIR}/TestFiles/f2 \
 	${TESTDIR}/TestFiles/f1 \
+	${TESTDIR}/TestFiles/f6 \
+	${TESTDIR}/TestFiles/f7 \
 	${TESTDIR}/TestFiles/f3
 
 # Test Object Files
 TESTOBJECTFILES= \
-	${TESTDIR}/tests/newcunittest10.o \
-	${TESTDIR}/tests/newcunittest8.o \
-	${TESTDIR}/tests/newcunittest9.o
+	${TESTDIR}/tests/borar.o \
+	${TESTDIR}/tests/cero.o \
+	${TESTDIR}/tests/invertir_.o \
+	${TESTDIR}/tests/modificar_.o \
+	${TESTDIR}/tests/ordenamiento.o \
+	${TESTDIR}/tests/producto.o \
+	${TESTDIR}/tests/redimencionar_.o \
+	${TESTDIR}/tests/remplazar_.o \
+	${TESTDIR}/tests/trasponer_.o
 
 # C Compiler Flags
 CFLAGS=
@@ -94,35 +106,95 @@ ${OBJECTDIR}/main.o: main.c
 .build-tests-conf: .build-tests-subprojects .build-conf ${TESTFILES}
 .build-tests-subprojects:
 
-${TESTDIR}/TestFiles/f2: ${TESTDIR}/tests/newcunittest9.o ${OBJECTFILES:%.o=%_nomain.o}
+${TESTDIR}/TestFiles/f10: ${TESTDIR}/tests/borar.o ${OBJECTFILES:%.o=%_nomain.o}
+	${MKDIR} -p ${TESTDIR}/TestFiles
+	${LINK.c} -o ${TESTDIR}/TestFiles/f10 $^ ${LDLIBSOPTIONS}   -lcunit 
+
+${TESTDIR}/TestFiles/f5: ${TESTDIR}/tests/invertir_.o ${OBJECTFILES:%.o=%_nomain.o}
+	${MKDIR} -p ${TESTDIR}/TestFiles
+	${LINK.c} -o ${TESTDIR}/TestFiles/f5 $^ ${LDLIBSOPTIONS}   -lcunit 
+
+${TESTDIR}/TestFiles/f8: ${TESTDIR}/tests/modificar_.o ${OBJECTFILES:%.o=%_nomain.o}
+	${MKDIR} -p ${TESTDIR}/TestFiles
+	${LINK.c} -o ${TESTDIR}/TestFiles/f8 $^ ${LDLIBSOPTIONS}   -lcunit 
+
+${TESTDIR}/TestFiles/f4: ${TESTDIR}/tests/producto.o ${OBJECTFILES:%.o=%_nomain.o}
+	${MKDIR} -p ${TESTDIR}/TestFiles
+	${LINK.c} -o ${TESTDIR}/TestFiles/f4 $^ ${LDLIBSOPTIONS}   -lcunit 
+
+${TESTDIR}/TestFiles/f2: ${TESTDIR}/tests/ordenamiento.o ${OBJECTFILES:%.o=%_nomain.o}
 	${MKDIR} -p ${TESTDIR}/TestFiles
 	${LINK.c} -o ${TESTDIR}/TestFiles/f2 $^ ${LDLIBSOPTIONS}   -lcunit 
 
-${TESTDIR}/TestFiles/f1: ${TESTDIR}/tests/newcunittest8.o ${OBJECTFILES:%.o=%_nomain.o}
+${TESTDIR}/TestFiles/f1: ${TESTDIR}/tests/cero.o ${OBJECTFILES:%.o=%_nomain.o}
 	${MKDIR} -p ${TESTDIR}/TestFiles
 	${LINK.c} -o ${TESTDIR}/TestFiles/f1 $^ ${LDLIBSOPTIONS}   -lcunit 
 
-${TESTDIR}/TestFiles/f3: ${TESTDIR}/tests/newcunittest10.o ${OBJECTFILES:%.o=%_nomain.o}
+${TESTDIR}/TestFiles/f6: ${TESTDIR}/tests/redimencionar_.o ${OBJECTFILES:%.o=%_nomain.o}
+	${MKDIR} -p ${TESTDIR}/TestFiles
+	${LINK.c} -o ${TESTDIR}/TestFiles/f6 $^ ${LDLIBSOPTIONS}   -lcunit 
+
+${TESTDIR}/TestFiles/f7: ${TESTDIR}/tests/remplazar_.o ${OBJECTFILES:%.o=%_nomain.o}
+	${MKDIR} -p ${TESTDIR}/TestFiles
+	${LINK.c} -o ${TESTDIR}/TestFiles/f7 $^ ${LDLIBSOPTIONS}   -lcunit 
+
+${TESTDIR}/TestFiles/f3: ${TESTDIR}/tests/trasponer_.o ${OBJECTFILES:%.o=%_nomain.o}
 	${MKDIR} -p ${TESTDIR}/TestFiles
 	${LINK.c} -o ${TESTDIR}/TestFiles/f3 $^ ${LDLIBSOPTIONS}   -lcunit 
 
 
-${TESTDIR}/tests/newcunittest9.o: tests/newcunittest9.c 
+${TESTDIR}/tests/borar.o: tests/borar.c 
 	${MKDIR} -p ${TESTDIR}/tests
 	${RM} "$@.d"
-	$(COMPILE.c) -O2 -MMD -MP -MF "$@.d" -o ${TESTDIR}/tests/newcunittest9.o tests/newcunittest9.c
+	$(COMPILE.c) -O2 -MMD -MP -MF "$@.d" -o ${TESTDIR}/tests/borar.o tests/borar.c
 
 
-${TESTDIR}/tests/newcunittest8.o: tests/newcunittest8.c 
+${TESTDIR}/tests/invertir_.o: tests/invertir_.c 
 	${MKDIR} -p ${TESTDIR}/tests
 	${RM} "$@.d"
-	$(COMPILE.c) -O2 -MMD -MP -MF "$@.d" -o ${TESTDIR}/tests/newcunittest8.o tests/newcunittest8.c
+	$(COMPILE.c) -O2 -MMD -MP -MF "$@.d" -o ${TESTDIR}/tests/invertir_.o tests/invertir_.c
 
 
-${TESTDIR}/tests/newcunittest10.o: tests/newcunittest10.c 
+${TESTDIR}/tests/modificar_.o: tests/modificar_.c 
 	${MKDIR} -p ${TESTDIR}/tests
 	${RM} "$@.d"
-	$(COMPILE.c) -O2 -MMD -MP -MF "$@.d" -o ${TESTDIR}/tests/newcunittest10.o tests/newcunittest10.c
+	$(COMPILE.c) -O2 -MMD -MP -MF "$@.d" -o ${TESTDIR}/tests/modificar_.o tests/modificar_.c
+
+
+${TESTDIR}/tests/producto.o: tests/producto.c 
+	${MKDIR} -p ${TESTDIR}/tests
+	${RM} "$@.d"
+	$(COMPILE.c) -O2 -MMD -MP -MF "$@.d" -o ${TESTDIR}/tests/producto.o tests/producto.c
+
+
+${TESTDIR}/tests/ordenamiento.o: tests/ordenamiento.c 
+	${MKDIR} -p ${TESTDIR}/tests
+	${RM} "$@.d"
+	$(COMPILE.c) -O2 -MMD -MP -MF "$@.d" -o ${TESTDIR}/tests/ordenamiento.o tests/ordenamiento.c
+
+
+${TESTDIR}/tests/cero.o: tests/cero.c 
+	${MKDIR} -p ${TESTDIR}/tests
+	${RM} "$@.d"
+	$(COMPILE.c) -O2 -MMD -MP -MF "$@.d" -o ${TESTDIR}/tests/cero.o tests/cero.c
+
+
+${TESTDIR}/tests/redimencionar_.o: tests/redimencionar_.c 
+	${MKDIR} -p ${TESTDIR}/tests
+	${RM} "$@.d"
+	$(COMPILE.c) -O2 -MMD -MP -MF "$@.d" -o ${TESTDIR}/tests/redimencionar_.o tests/redimencionar_.c
+
+
+${TESTDIR}/tests/remplazar_.o: tests/remplazar_.c 
+	${MKDIR} -p ${TESTDIR}/tests
+	${RM} "$@.d"
+	$(COMPILE.c) -O2 -MMD -MP -MF "$@.d" -o ${TESTDIR}/tests/remplazar_.o tests/remplazar_.c
+
+
+${TESTDIR}/tests/trasponer_.o: tests/trasponer_.c 
+	${MKDIR} -p ${TESTDIR}/tests
+	${RM} "$@.d"
+	$(COMPILE.c) -O2 -MMD -MP -MF "$@.d" -o ${TESTDIR}/tests/trasponer_.o tests/trasponer_.c
 
 
 ${OBJECTDIR}/funcion/funcion_nomain.o: ${OBJECTDIR}/funcion/funcion.o funcion/funcion.c 
@@ -155,8 +227,14 @@ ${OBJECTDIR}/main_nomain.o: ${OBJECTDIR}/main.o main.c
 .test-conf:
 	@if [ "${TEST}" = "" ]; \
 	then  \
+	    ${TESTDIR}/TestFiles/f10 || true; \
+	    ${TESTDIR}/TestFiles/f5 || true; \
+	    ${TESTDIR}/TestFiles/f8 || true; \
+	    ${TESTDIR}/TestFiles/f4 || true; \
 	    ${TESTDIR}/TestFiles/f2 || true; \
 	    ${TESTDIR}/TestFiles/f1 || true; \
+	    ${TESTDIR}/TestFiles/f6 || true; \
+	    ${TESTDIR}/TestFiles/f7 || true; \
 	    ${TESTDIR}/TestFiles/f3 || true; \
 	else  \
 	    ./${TEST} || true; \
