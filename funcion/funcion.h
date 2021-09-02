@@ -20,9 +20,7 @@ void multliplicacion_matriz(tipo_dato **V_1,tipo_dato **V_2,tipo_dato **Vector_s
 void matrix_traspuesta(tipo_dato **V,int filas,int colunas);
 
 
-void modificar(tipo_dato *V,int N_casilla,tipo_dato dato_sustitullente);
-
-void insertar(tipo_dato *V, int N_casilla, tipo_dato dato_a_insertar);
+void insertar(tipo_dato *V, tipo_dato dato_a_insertar,int N,char Vandera_);
 
 void borra(tipo_dato *V, int N_casilla);
 
@@ -34,7 +32,7 @@ void invertir(tipo_dato *V,int N);
 
 void redimencionar(tipo_dato *v,tipo_dato nueva_dimencion);
 
-void poner_cero_todo(tipo_dato *V);
+void poner_cero_todo(tipo_dato *V,int N);
 
 void buscar_remplazar(tipo_dato *V,tipo_dato numero,tipo_dato remplazo,int N);
 

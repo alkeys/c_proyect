@@ -23,6 +23,18 @@
       <logicalFolder name="f10" displayName="borrar" projectFiles="true" kind="TEST">
         <itemPath>tests/borar.c</itemPath>
       </logicalFolder>
+      <logicalFolder name="f9"
+                     displayName="buscar y remplazar"
+                     projectFiles="true"
+                     kind="TEST">
+        <itemPath>tests/newcunittest8.c</itemPath>
+      </logicalFolder>
+      <logicalFolder name="f7"
+                     displayName="insertar dato"
+                     projectFiles="true"
+                     kind="TEST">
+        <itemPath>tests/newcunittest9.c</itemPath>
+      </logicalFolder>
       <logicalFolder name="f5" displayName="invertir" projectFiles="true" kind="TEST">
         <itemPath>tests/invertir_.c</itemPath>
       </logicalFolder>
@@ -56,12 +68,6 @@
                      kind="TEST">
         <itemPath>tests/redimencionar_.c</itemPath>
       </logicalFolder>
-      <logicalFolder name="f7"
-                     displayName="remplazar"
-                     projectFiles="true"
-                     kind="TEST">
-        <itemPath>tests/remplazar_.c</itemPath>
-      </logicalFolder>
       <logicalFolder name="f3"
                      displayName="trasponer"
                      projectFiles="true"
@@ -85,6 +91,9 @@
         <rebuildPropChanged>false</rebuildPropChanged>
       </toolsSet>
       <compileType>
+        <cTool>
+          <commandLine>-fprofile-arcs -ftest-coverage</commandLine>
+        </cTool>
       </compileType>
       <folder path="TestFiles/f1">
         <linkerTool>
@@ -158,6 +167,14 @@
           </linkerLibItems>
         </linkerTool>
       </folder>
+      <folder path="TestFiles/f9">
+        <linkerTool>
+          <output>${TESTDIR}/TestFiles/f9</output>
+          <linkerLibItems>
+            <linkerOptionItem>-lcunit</linkerOptionItem>
+          </linkerLibItems>
+        </linkerTool>
+      </folder>
       <item path="funcion/funcion.c" ex="false" tool="0" flavor2="0">
       </item>
       <item path="funcion/funcion.h" ex="false" tool="3" flavor2="0">
@@ -172,13 +189,15 @@
       </item>
       <item path="tests/modificar_.c" ex="false" tool="0" flavor2="0">
       </item>
+      <item path="tests/newcunittest8.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="tests/newcunittest9.c" ex="false" tool="0" flavor2="0">
+      </item>
       <item path="tests/ordenamiento.c" ex="false" tool="0" flavor2="0">
       </item>
       <item path="tests/producto.c" ex="false" tool="0" flavor2="0">
       </item>
       <item path="tests/redimencionar_.c" ex="false" tool="0" flavor2="0">
-      </item>
-      <item path="tests/remplazar_.c" ex="false" tool="0" flavor2="0">
       </item>
       <item path="tests/trasponer_.c" ex="false" tool="0" flavor2="0">
       </item>
@@ -275,6 +294,14 @@
           </linkerLibItems>
         </linkerTool>
       </folder>
+      <folder path="TestFiles/f9">
+        <linkerTool>
+          <output>${TESTDIR}/TestFiles/f9</output>
+          <linkerLibItems>
+            <linkerOptionItem>-lcunit</linkerOptionItem>
+          </linkerLibItems>
+        </linkerTool>
+      </folder>
       <item path="funcion/funcion.c" ex="false" tool="0" flavor2="0">
       </item>
       <item path="funcion/funcion.h" ex="false" tool="3" flavor2="0">
@@ -289,13 +316,15 @@
       </item>
       <item path="tests/modificar_.c" ex="false" tool="0" flavor2="0">
       </item>
+      <item path="tests/newcunittest8.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="tests/newcunittest9.c" ex="false" tool="0" flavor2="0">
+      </item>
       <item path="tests/ordenamiento.c" ex="false" tool="0" flavor2="0">
       </item>
       <item path="tests/producto.c" ex="false" tool="0" flavor2="0">
       </item>
       <item path="tests/redimencionar_.c" ex="false" tool="0" flavor2="0">
-      </item>
-      <item path="tests/remplazar_.c" ex="false" tool="0" flavor2="0">
       </item>
       <item path="tests/trasponer_.c" ex="false" tool="0" flavor2="0">
       </item>

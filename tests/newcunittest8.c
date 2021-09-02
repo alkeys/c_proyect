@@ -2,15 +2,13 @@
  * File:   newcunittest8.c
  * Author: avi
  *
- * Created on 28 ago. 2021, 23:16:13
+ * Created on 1 sept. 2021, 20:11:33
  */
 
 #include <stdio.h>
 #include <stdlib.h>
 #include <CUnit/Basic.h>
-//#include "../funcion/funcion.h"
-typedef int tipo_dato;
-
+#include "../funcion/funcion.h"
 
 /*
  * CUnit Test Suite
@@ -24,16 +22,13 @@ int clean_suite(void) {
     return 0;
 }
 
-void poner_cero_todo(tipo_dato* V, int N);
-
-void testP_cero() {
-    tipo_dato V[2];
-    V[0]=2;
-    V[1]=3;
-    int N=2;
-    poner_cero_todo(V, N);
-    CU_ASSERT_EQUAL(V[0],0);
-    
+void testBuscar_remplazar() {
+    int V[]={7,8,7,9,6};
+    int dato_a_remplazar=7;
+    int Nuevo_dato=4;
+    buscar_remplazar(V, dato_a_remplazar, Nuevo_dato,5);
+    CU_ASSERT_EQUAL(V[0],4);
+    CU_ASSERT_EQUAL(V[2],4);
 }
 
 int main() {
@@ -51,7 +46,7 @@ int main() {
     }
 
     /* Add the tests to the suite */
-    if ((NULL == CU_add_test(pSuite, "testP_cero", testP_cero))) {
+    if ((NULL == CU_add_test(pSuite, "testBuscar_remplazar", testBuscar_remplazar))) {
         CU_cleanup_registry();
         return CU_get_error();
     }

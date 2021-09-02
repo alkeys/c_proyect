@@ -44,13 +44,14 @@ TESTDIR=${CND_BUILDDIR}/${CND_CONF}/${CND_PLATFORM}/tests
 # Test Files
 TESTFILES= \
 	${TESTDIR}/TestFiles/f10 \
+	${TESTDIR}/TestFiles/f9 \
+	${TESTDIR}/TestFiles/f7 \
 	${TESTDIR}/TestFiles/f5 \
 	${TESTDIR}/TestFiles/f8 \
 	${TESTDIR}/TestFiles/f4 \
 	${TESTDIR}/TestFiles/f2 \
 	${TESTDIR}/TestFiles/f1 \
 	${TESTDIR}/TestFiles/f6 \
-	${TESTDIR}/TestFiles/f7 \
 	${TESTDIR}/TestFiles/f3
 
 # Test Object Files
@@ -59,14 +60,15 @@ TESTOBJECTFILES= \
 	${TESTDIR}/tests/cero.o \
 	${TESTDIR}/tests/invertir_.o \
 	${TESTDIR}/tests/modificar_.o \
+	${TESTDIR}/tests/newcunittest8.o \
+	${TESTDIR}/tests/newcunittest9.o \
 	${TESTDIR}/tests/ordenamiento.o \
 	${TESTDIR}/tests/producto.o \
 	${TESTDIR}/tests/redimencionar_.o \
-	${TESTDIR}/tests/remplazar_.o \
 	${TESTDIR}/tests/trasponer_.o
 
 # C Compiler Flags
-CFLAGS=
+CFLAGS=-fprofile-arcs -ftest-coverage
 
 # CC Compiler Flags
 CCFLAGS=
@@ -110,6 +112,14 @@ ${TESTDIR}/TestFiles/f10: ${TESTDIR}/tests/borar.o ${OBJECTFILES:%.o=%_nomain.o}
 	${MKDIR} -p ${TESTDIR}/TestFiles
 	${LINK.c} -o ${TESTDIR}/TestFiles/f10 $^ ${LDLIBSOPTIONS}   -lcunit 
 
+${TESTDIR}/TestFiles/f9: ${TESTDIR}/tests/newcunittest8.o ${OBJECTFILES:%.o=%_nomain.o}
+	${MKDIR} -p ${TESTDIR}/TestFiles
+	${LINK.c} -o ${TESTDIR}/TestFiles/f9 $^ ${LDLIBSOPTIONS}   -lcunit 
+
+${TESTDIR}/TestFiles/f7: ${TESTDIR}/tests/newcunittest9.o ${OBJECTFILES:%.o=%_nomain.o}
+	${MKDIR} -p ${TESTDIR}/TestFiles
+	${LINK.c} -o ${TESTDIR}/TestFiles/f7 $^ ${LDLIBSOPTIONS}   -lcunit 
+
 ${TESTDIR}/TestFiles/f5: ${TESTDIR}/tests/invertir_.o ${OBJECTFILES:%.o=%_nomain.o}
 	${MKDIR} -p ${TESTDIR}/TestFiles
 	${LINK.c} -o ${TESTDIR}/TestFiles/f5 $^ ${LDLIBSOPTIONS}   -lcunit 
@@ -134,10 +144,6 @@ ${TESTDIR}/TestFiles/f6: ${TESTDIR}/tests/redimencionar_.o ${OBJECTFILES:%.o=%_n
 	${MKDIR} -p ${TESTDIR}/TestFiles
 	${LINK.c} -o ${TESTDIR}/TestFiles/f6 $^ ${LDLIBSOPTIONS}   -lcunit 
 
-${TESTDIR}/TestFiles/f7: ${TESTDIR}/tests/remplazar_.o ${OBJECTFILES:%.o=%_nomain.o}
-	${MKDIR} -p ${TESTDIR}/TestFiles
-	${LINK.c} -o ${TESTDIR}/TestFiles/f7 $^ ${LDLIBSOPTIONS}   -lcunit 
-
 ${TESTDIR}/TestFiles/f3: ${TESTDIR}/tests/trasponer_.o ${OBJECTFILES:%.o=%_nomain.o}
 	${MKDIR} -p ${TESTDIR}/TestFiles
 	${LINK.c} -o ${TESTDIR}/TestFiles/f3 $^ ${LDLIBSOPTIONS}   -lcunit 
@@ -147,6 +153,18 @@ ${TESTDIR}/tests/borar.o: tests/borar.c
 	${MKDIR} -p ${TESTDIR}/tests
 	${RM} "$@.d"
 	$(COMPILE.c) -g -MMD -MP -MF "$@.d" -o ${TESTDIR}/tests/borar.o tests/borar.c
+
+
+${TESTDIR}/tests/newcunittest8.o: tests/newcunittest8.c 
+	${MKDIR} -p ${TESTDIR}/tests
+	${RM} "$@.d"
+	$(COMPILE.c) -g -MMD -MP -MF "$@.d" -o ${TESTDIR}/tests/newcunittest8.o tests/newcunittest8.c
+
+
+${TESTDIR}/tests/newcunittest9.o: tests/newcunittest9.c 
+	${MKDIR} -p ${TESTDIR}/tests
+	${RM} "$@.d"
+	$(COMPILE.c) -g -MMD -MP -MF "$@.d" -o ${TESTDIR}/tests/newcunittest9.o tests/newcunittest9.c
 
 
 ${TESTDIR}/tests/invertir_.o: tests/invertir_.c 
@@ -183,12 +201,6 @@ ${TESTDIR}/tests/redimencionar_.o: tests/redimencionar_.c
 	${MKDIR} -p ${TESTDIR}/tests
 	${RM} "$@.d"
 	$(COMPILE.c) -g -MMD -MP -MF "$@.d" -o ${TESTDIR}/tests/redimencionar_.o tests/redimencionar_.c
-
-
-${TESTDIR}/tests/remplazar_.o: tests/remplazar_.c 
-	${MKDIR} -p ${TESTDIR}/tests
-	${RM} "$@.d"
-	$(COMPILE.c) -g -MMD -MP -MF "$@.d" -o ${TESTDIR}/tests/remplazar_.o tests/remplazar_.c
 
 
 ${TESTDIR}/tests/trasponer_.o: tests/trasponer_.c 
@@ -228,13 +240,14 @@ ${OBJECTDIR}/main_nomain.o: ${OBJECTDIR}/main.o main.c
 	@if [ "${TEST}" = "" ]; \
 	then  \
 	    ${TESTDIR}/TestFiles/f10 || true; \
+	    ${TESTDIR}/TestFiles/f9 || true; \
+	    ${TESTDIR}/TestFiles/f7 || true; \
 	    ${TESTDIR}/TestFiles/f5 || true; \
 	    ${TESTDIR}/TestFiles/f8 || true; \
 	    ${TESTDIR}/TestFiles/f4 || true; \
 	    ${TESTDIR}/TestFiles/f2 || true; \
 	    ${TESTDIR}/TestFiles/f1 || true; \
 	    ${TESTDIR}/TestFiles/f6 || true; \
-	    ${TESTDIR}/TestFiles/f7 || true; \
 	    ${TESTDIR}/TestFiles/f3 || true; \
 	else  \
 	    ./${TEST} || true; \

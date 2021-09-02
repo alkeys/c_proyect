@@ -1,16 +1,14 @@
 /*
- * File:   newcunittest8.c
+ * File:   newcunittest9.c
  * Author: avi
  *
- * Created on 28 ago. 2021, 23:16:13
+ * Created on 1 sept. 2021, 21:32:13
  */
 
 #include <stdio.h>
 #include <stdlib.h>
 #include <CUnit/Basic.h>
-//#include "../funcion/funcion.h"
-typedef int tipo_dato;
-
+#include "../funcion/funcion.h"
 
 /*
  * CUnit Test Suite
@@ -24,16 +22,17 @@ int clean_suite(void) {
     return 0;
 }
 
-void poner_cero_todo(tipo_dato* V, int N);
+void testInsertar() {
+    //este metodo para su principal funcionamiento debe de poner a cero desde el principo el vector y despues ordenalarlo para
+    //su funcionamiento correcto
+    //el metodo ingresa el dato en el ultimo valor 
+    tipo_dato V[3];
+    poner_cero_todo(V,3);
+    V[0]=6;
+    V[1]=8;
+    insertar(V,7,3,'v');
+    CU_ASSERT_EQUAL(V[2],7);
 
-void testP_cero() {
-    tipo_dato V[2];
-    V[0]=2;
-    V[1]=3;
-    int N=2;
-    poner_cero_todo(V, N);
-    CU_ASSERT_EQUAL(V[0],0);
-    
 }
 
 int main() {
@@ -44,14 +43,14 @@ int main() {
         return CU_get_error();
 
     /* Add a suite to the registry */
-    pSuite = CU_add_suite("newcunittest8", init_suite, clean_suite);
+    pSuite = CU_add_suite("newcunittest9", init_suite, clean_suite);
     if (NULL == pSuite) {
         CU_cleanup_registry();
         return CU_get_error();
     }
 
     /* Add the tests to the suite */
-    if ((NULL == CU_add_test(pSuite, "testP_cero", testP_cero))) {
+    if ((NULL == CU_add_test(pSuite, "testInsertar", testInsertar))) {
         CU_cleanup_registry();
         return CU_get_error();
     }

@@ -16,7 +16,7 @@
 
 #define colunas(vector) ((sizeof(vector)/sizeof(vector[0][0]))/filas(vector))
 
-void p_cero(tipo_dato *V, int N) {
+void poner_cero_todo(tipo_dato *V, int N) {
     int i;
     for (i = 0; i < N; i++) {
         V[i] = 0;
@@ -62,29 +62,6 @@ void redimencionar(tipo_dato *v, int nueva_dimencion) {
 }
 
 
-
-
-
-
-//remplaza todos lo valores que sean iguales al dato de remplazo
-// V = vector
-
-void remplazar(tipo_dato *V, tipo_dato dato_a_remplazar, tipo_dato Nuevo_dato) {
-
-    int i;
-    for (i = 0; i < 5; i++) {
-        if (V[i] == dato_a_remplazar) {
-            V[i] = Nuevo_dato;
-        }
-    }
-    return;
-}
-
-
-
-
-
-
 //modifica un espacio de memoria concreto
 
 void modificar(tipo_dato *V, int N_casilla, tipo_dato dato_sustitullente) {
@@ -94,12 +71,13 @@ void modificar(tipo_dato *V, int N_casilla, tipo_dato dato_sustitullente) {
 
 //inserta un dato en un espacio de memoria concreto
 // V =vector
-// N_casilla seleciona el espaci d memoria
 //dato_a_insertar
-//este metodo solo funciona cuando esta ordenado el vector 
-void insertar(tipo_dato *V, int N_casilla, tipo_dato dato_a_insertar) {
-
-    
+//espacio = V si hay espacios vacios F=no hay
+//este metodo primero hay que ordenar de forma decendiente
+void insertar(tipo_dato *V, tipo_dato dato_a_insertar,int N,char Espacio) {
+    if(Espacio=='V' || Espacio=='v' ){
+        V[N-1]=dato_a_insertar;
+    }
     
 }
 
@@ -145,9 +123,7 @@ void buscar_remplazar(tipo_dato *V, tipo_dato numero, tipo_dato remplazo, int N)
 //Vector salida datos de salida de la multiplicacion
 //para multipicar matrix de la misma dimencion
 void multliplicacion_matriz(tipo_dato **V_1,tipo_dato **V_2,tipo_dato **Vector_salida,int filas_aux, int colu_aux){
-
     int i,j,numero_salida=0,k,cont_aux=0;
-    
     //variable para almacenar todos los datos
     tipo_dato **matrix_c;
        matrix_c = (tipo_dato **) malloc(filas_aux * sizeof (tipo_dato*));
@@ -164,11 +140,8 @@ void multliplicacion_matriz(tipo_dato **V_1,tipo_dato **V_2,tipo_dato **Vector_s
             cont_aux++;
             numero_salida=0;
         }
-        
+  
         }
-    
-       
-       
     for (i = 0; i < filas_aux; i++) {
         for (j = 0; j < colu_aux; j++) {
             Vector_salida[i][j]=matrix_c[i][j];
